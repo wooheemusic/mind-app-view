@@ -1,65 +1,91 @@
-import createGetRem from 'common/modules/createGetRem';
 import centerChildren from 'common/styles/centerChildren';
-import getInputBorder from 'mindCore/styles/getInputBorder';
-import { panelColor, mainTheme, getMainTheme, getPanelBackgroundColor } from 'mindCore/styles/variables';
+import { panelColor, getPanelBackgroundColor } from 'mindCore/styles/variables';
 
-const unit = 1;
-const getRem = createGetRem(unit);
+// 16 for document.body.clientWidth > 770
+// 8 for <= 770
 
-const arrowContainerSize = 10;
-const arrowSize = 2.5;
+function getArrowStyle(pxu) {
+    const containerBorderRadius = pxu;
+    const arrowContainerSize = pxu * 10;
+    const arrowSize = pxu * 2.5;
+    const arrowDistance = arrowSize + pxu * 3 / 4
+    const arrowMargin = pxu / 2;
+    const arrowContainer = {
+        ...centerChildren,
+        flex: '0 0 auto',
+        backgroundColor: getPanelBackgroundColor(1 - 1 / 8),
+        borderRadius: containerBorderRadius,
+        margin: arrowMargin,
+        width: arrowContainerSize,
+        height: arrowContainerSize,
+    }
+    const arrow = {
+        flex: 'none',
+        position: 'absolute',
+        width: arrowSize,
+        height: arrowSize,
+    }
 
-const arrowContainer = {
-    ...centerChildren,
-    flex: '0, 0, auto',
-    backgroundColor: getPanelBackgroundColor(1 - 1 / 8),
-    borderRadius: getRem(2),
-    // padding: getRem(1),
-    margin: getRem(1),
-    width: getRem(arrowContainerSize),
-    height: getRem(arrowContainerSize),
+    return [arrowContainer, arrow, arrowDistance];
 }
 
-//fill:lime;stroke:purple;stroke-width:1
-
-const arrow = {
-    flex: 'none',
-    position: 'absolute',
-    width: getRem(arrowSize),
-    height: getRem(arrowSize),
-}
+const [mediumArrowContainer, mediumArrow, mediumArrowDistance] = getArrowStyle(16);
+const [smallArrowContainer, smallArrow, smallArrowDistance] = getArrowStyle(8);
 
 const triangle = {
     fill: 'rgb(0,0,0,0.1)',
     stroke: panelColor,
-    strokeWidth: `${1 / 8}rem`,
-    strokeDasharray: `${getRem(0.1)} ${getRem(0.3)}`,
+    strokeWidth: 2,
+    strokeDasharray: '2 4',
     strokeLinecap: "round",
     strokeLinejoin: "round",
 }
 
 export default {
-    'arrow-container': arrowContainer,
+    'arrow-container': mediumArrowContainer,
     'triangle': triangle,
     'triangle-active': {
         ...triangle,
-        fill: 'yellow',
+        fill: 'rgb(255, 245, 54, 0.8)',
         stroke: '#b39500',
     },
     'arrow-up': {
-        ...arrow,
-        transform: `translateY(-${arrowSize + 0.75}rem)`
+        ...mediumArrow,
+        transform: `translateY(-${mediumArrowDistance}px)`
     },
     'arrow-right': {
-        ...arrow,
-        transform: `translateX(${arrowSize + 0.75}rem) rotate(90deg)`
+        ...mediumArrow,
+        transform: `translateX(${mediumArrowDistance}px) rotate(90deg)`
     },
     'arrow-down': {
-        ...arrow,
-        transform: `translateY(${arrowSize + 0.75}rem) rotate(180deg)`
+        ...mediumArrow,
+        transform: `translateY(${mediumArrowDistance}px) rotate(180deg)`
     },
     'arrow-left': {
-        ...arrow,
-        transform: `translateX(-${arrowSize + 0.75}rem) rotate(-90deg)`
+        ...mediumArrow,
+        transform: `translateX(-${mediumArrowDistance}px) rotate(-90deg)`
+    },
+    'arrow-container-small': smallArrowContainer,
+    'triangle': triangle,
+    'triangle-active': {
+        ...triangle,
+        fill: 'rgb(255, 245, 54, 0.8)',
+        stroke: '#b39500',
+    },
+    'arrow-up-small': {
+        ...smallArrow,
+        transform: `translateY(-${smallArrowDistance}px)`
+    },
+    'arrow-right-small': {
+        ...smallArrow,
+        transform: `translateX(${smallArrowDistance}px) rotate(90deg)`
+    },
+    'arrow-down-small': {
+        ...smallArrow,
+        transform: `translateY(${smallArrowDistance}px) rotate(180deg)`
+    },
+    'arrow-left-small': {
+        ...smallArrow,
+        transform: `translateX(-${smallArrowDistance}px) rotate(-90deg)`
     },
 }

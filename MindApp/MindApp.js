@@ -1,6 +1,8 @@
 import useTokenRefresh from 'mindCore/states/useTokenRefresh';
 import useIsLoggedIn from 'mindCore/states/useIsLoggedIn';
 import KeyEventRegistration from 'common/domStates/KeyEventRegistration';
+import useArrowKeyEventReducer from 'mindCore/states/useArrowKeyEventReducer';
+import useKeyEventReducer from 'mindCore/states/useKeyEventReducer';
 
 import Container from './Container';
 import Guest from './Guest';
@@ -17,7 +19,13 @@ export default function MindApp(props) {
                     : <Authenticated />}
 
             </Container>
-            <KeyEventRegistration allowed={[
+            <KeyEventRegistration useReducer={useArrowKeyEventReducer} allowed={[
+                'ArrowLeft',
+                'ArrowRight',
+                'ArrowUp',
+                'ArrowDown',
+            ]} />
+            <KeyEventRegistration useReducer={useKeyEventReducer} allowed={[
                 'Digit0',
                 'Digit1',
                 'Digit2',
@@ -28,14 +36,9 @@ export default function MindApp(props) {
                 'Digit7',
                 'Digit8',
                 'Digit9',
-                ' ',
                 'Enter',
                 'Escape',
                 'Backspace',
-                'ArrowLeft',
-                'ArrowRight',
-                'ArrowUp',
-                'ArrowDown',
             ]} />
         </>
     );

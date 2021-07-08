@@ -1,6 +1,7 @@
 import createGetRem from 'common/modules/createGetRem';
 import textEllipsis from 'common/styles/textEllipsis';
 import transitionDefault from 'mindCore/styles/transitionDefault';
+import getOutline from 'mindCore/styles/getOutline';
 import { getPanelBackgroundColor, mainTheme, zIndexMenu } from 'mindCore/styles/variables';
 
 const unit = 1;
@@ -41,6 +42,7 @@ const svg = {
     width: svgRadius,
     height: svgRadius,
     fill: mainTheme,
+    '&:focus': getOutline(unit)
 };
 
 const email = {
@@ -94,5 +96,7 @@ export default {
         bottom: getRem(1),
         right: getRem(1),
         cursor: 'pointer',
+        '&:focus': getOutline(unit),
+        color: mainTheme,
     }
 }

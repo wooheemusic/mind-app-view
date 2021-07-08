@@ -1,22 +1,17 @@
-import { memo } from 'react';
-import useKeyEvent from 'common/domStates/useKeyEvent';
-
 import Arrows from './Arrows';
-import Numbers from './Numbers';
+import Keys from './Keys';
 import Instruction from './Instruction';
 
 import { register } from 'common/cssModule';
 import controllerJss from './controllerJss';
 const [getClassName] = register(controllerJss);
 
-export default memo(function Controller(props) {
-    const [{ downs, up }, dispatchKeyEvent] = useKeyEvent();
-
+export default function Controller() {
     return (
         <div className={getClassName('controller')}>
-            <Arrows downs={downs} dispatchKeyEvent={dispatchKeyEvent} />
-            <Numbers downs={downs} up={up} dispatchKeyEvent={dispatchKeyEvent} />
+            <Arrows />
+            <Keys />
             <Instruction />
         </div>
     );
-})
+}
