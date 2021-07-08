@@ -6,7 +6,7 @@
 - log-in과 관련하여 브라우져의 여러탭들이 동기화됩니다.
 - react hook의 useEffect를 다방면으로 검증하여 사용해 보았습니다.
 - 전역 키보드 이벤트로 앱을 다루는 시도를 해보았습니다.
-- 키보드의 쏟아지는 값들을 react의 pseudo-static state로 변환하고, 그 고정된 state를 requestAnimationFrame을 사용하여 동적 표현형으로 변환한 것이 매우 흥미로운 부분입니다. react를, events의 무리와 화면의 프레임 무리의 훌륭한 매개체로써 사용하였습니다.
+- 키보드의 쏟아지는 값들을 react의 다소 정적인 state로 변환하고, 그 state를 requestAnimationFrame을 사용하여 동적 표현형으로 변환한 것이 매우 흥미로운 부분입니다. react를, events의 무리와 화면의 프레임 무리의 훌륭한 매개체로써 사용하였습니다.
 - css-in-js 중 jss를 시도해보았습니다. 가독성에 관하여 개선해야할 도전적인 부분이 많습니다. 
   
 ## 앱 이용 방법
